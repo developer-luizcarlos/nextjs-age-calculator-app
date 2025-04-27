@@ -1,8 +1,13 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 
 export default function Home() {
+  const [totalYears, setTotalYears] = useState<number>(0);
+  const [totalMonths, setTotalMonths] = useState<number>(0);
+  const [totalDays, setTotalDays] = useState<number>(0);
+
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
       <article className="bg-white w-3/5 p-8 round">
@@ -42,15 +47,15 @@ export default function Home() {
         </div>
         <ul>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">--</span>
+            <span className="text-purple-500">{totalYears || "--"}</span>
             <span className="text-black ml-3">years</span>
           </li>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">--</span>
+            <span className="text-purple-500">{totalMonths || "--"}</span>
             <span className="text-black ml-3">months</span>
           </li>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">--</span>
+            <span className="text-purple-500">{totalDays || "--"}</span>
             <span className="text-black ml-3">days</span>
           </li>
         </ul>
