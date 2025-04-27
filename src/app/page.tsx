@@ -1,10 +1,34 @@
+"use client";
 import Image from "next/image";
+import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 
 export default function Home() {
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
       <article className="bg-white w-3/5 p-8 round">
-        <header></header>
+        <header className="flex items-center gap-3">
+          <InputWrapper
+            errorMessage="Must be a valid day"
+            isErrorShow={false}
+            label="DAY"
+            maxValue={31}
+            handleChange={() => {}}
+          />
+          <InputWrapper
+            errorMessage="Must be a valid month"
+            isErrorShow={false}
+            label="MONTH"
+            maxValue={12}
+            handleChange={() => {}}
+          />
+          <InputWrapper
+            errorMessage="Must be a valid year"
+            isErrorShow={false}
+            label="YEAR"
+            maxValue={new Date().getFullYear()}
+            handleChange={() => {}}
+          />
+        </header>
         <div className="flex items-center gap-3">
           <hr className="w-full text-gray-200" />
           <button className="bg-purple-500 p-4 overflow-hidden cursor-pointer rounded-full flex items-center justify-center">
