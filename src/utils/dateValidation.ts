@@ -1,3 +1,21 @@
+import { DateTime } from "luxon";
+
+export function calculateYearsMonthsAndDaysAlive(
+  year: number,
+  month: number,
+  day: number
+) {
+  const timePassed = DateTime.now().diff(DateTime.local(year, month, day), [
+    "years",
+    "months",
+    "days",
+  ]);
+  const yearsPassed = timePassed.years;
+  const monthsPassed = timePassed.months;
+  const daysPassed = Math.round(timePassed.days);
+  return { yearsPassed, monthsPassed, daysPassed };
+}
+
 export function isDayAccordingToMonthAndYear(
   day: number,
   month: number,
