@@ -17,7 +17,7 @@ export function InputWrapper({
         {label}
       </label>
       <input
-        type="number"
+        type="text"
         min={0}
         max={maxValue}
         value={value}

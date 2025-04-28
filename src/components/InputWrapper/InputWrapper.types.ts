@@ -4,5 +4,5 @@ export interface InputWrapperBase {
   handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
   label: string;
   maxValue: number;
-  value: number;
+  value: string;
 }

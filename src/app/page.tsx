@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 
 export default function Home() {
@@ -8,13 +8,23 @@ export default function Home() {
   const [totalMonths, setTotalMonths] = useState<number>(0);
   const [totalDays, setTotalDays] = useState<number>(0);
 
-  const [yearValue, setYearValue] = useState<number>(0);
-  const [monthValue, setMonthValue] = useState<number>(0);
-  const [dayValue, setDayValue] = useState<number>(0);
+  const [yearValue, setYearValue] = useState<string>("");
+  const [monthValue, setMonthValue] = useState<string>("");
+  const [dayValue, setDayValue] = useState<string>("");
 
   const [yearError, setYearError] = useState<boolean>(false);
   const [monthError, setMonthError] = useState<boolean>(false);
   const [dayError, setDayError] = useState<boolean>(false);
+
+  function validateInputValue(
+    min: number,
+    max: number,
+    value: string
+  ): boolean {
+    const val = parseFloat(value);
+    if (!val || val < min || val > max) return true;
+    else return false;
+  }
 
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
@@ -25,8 +35,11 @@ export default function Home() {
             isErrorShow={dayError}
             label="DAY"
             maxValue={31}
-            value={yearValue}
-            handleChange={() => {}}
+            value={dayValue}
+            handleChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setDayValue(e.target.value);
+              setDayError(validateInputValue(1, 31, e.target.value));
+            }}
           />
           <InputWrapper
             errorMessage="Must be a valid month"
@@ -34,15 +47,27 @@ export default function Home() {
             label="MONTH"
             maxValue={12}
             value={monthValue}
-            handleChange={() => {}}
+            handleChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setMonthValue(e.target.value);
+              setMonthError(validateInputValue(1, 12, e.target.value));
+            }}
           />
           <InputWrapper
             errorMessage="Must be a valid year"
             isErrorShow={yearError}
             label="YEAR"
             maxValue={new Date().getFullYear()}
-            value={dayValue}
-            handleChange={() => {}}
+            value={yearValue}
+            handleChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setYearValue(e.target.value);
+              setYearError(
+                validateInputValue(
+                  1950,
+                  new Date().getFullYear(),
+                  e.target.value
+                )
+              );
+            }}
           />
         </header>
         <div className="flex items-center gap-3">
