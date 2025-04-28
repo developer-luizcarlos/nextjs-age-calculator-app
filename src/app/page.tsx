@@ -8,6 +8,10 @@ export default function Home() {
   const [totalMonths, setTotalMonths] = useState<number>(0);
   const [totalDays, setTotalDays] = useState<number>(0);
 
+  const [yearValue, setYearValue] = useState<number>(0);
+  const [monthValue, setMonthValue] = useState<number>(0);
+  const [dayValue, setDayValue] = useState<number>(0);
+
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
       <article className="bg-white w-3/5 p-8 round">
