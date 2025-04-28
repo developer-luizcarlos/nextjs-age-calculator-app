@@ -2,6 +2,11 @@
 import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
+import {
+  calculateYearsMonthsAndDaysAlive,
+  isDayAccordingToMonthAndYear,
+} from "@/utils/dateValidation";
+import { monthFormat } from "@/utils/dateFormat";
 
 export default function Home() {
   const [totalYears, setTotalYears] = useState<number>(0);
@@ -15,6 +20,56 @@ export default function Home() {
   const [yearError, setYearError] = useState<boolean>(false);
   const [monthError, setMonthError] = useState<boolean>(false);
   const [dayError, setDayError] = useState<boolean>(false);
+
+  function calculateAge() {
+    verifyExistentErrors();
+    if (
+      dayError ||
+      monthError ||
+      yearError ||
+      dayValue === "" ||
+      monthValue === "" ||
+      yearValue === ""
+    )
+      return;
+
+    const day = parseFloat(dayValue);
+    const month = parseFloat(monthFormat(monthValue));
+    const year = parseFloat(yearValue);
+
+    const isValidDate = isDayAccordingToMonthAndYear(day, month, year);
+    if (!isValidDate) {
+      setDayError(true);
+      setMonthError(true);
+      setYearError(true);
+      return;
+    }
+
+    const totalAge = calculateYearsMonthsAndDaysAlive(year, month, day);
+    setTotalDays(totalAge.daysPassed);
+    setTotalMonths(totalAge.monthsPassed);
+    setTotalYears(totalAge.yearsPassed);
+  }
+
+  function verifyExistentErrors() {
+    if (dayValue === "") {
+      setDayError(true);
+    } else {
+      setDayError(false);
+    }
+
+    if (monthValue === "") {
+      setMonthError(true);
+    } else {
+      setMonthError(false);
+    }
+
+    if (yearValue === "") {
+      setYearError(true);
+    } else {
+      setYearError(false);
+    }
+  }
 
   function validateInputValue(
     min: number,
@@ -72,7 +127,10 @@ export default function Home() {
         </header>
         <div className="flex items-center gap-3">
           <hr className="w-full text-gray-200" />
-          <button className="bg-purple-500 p-4 overflow-hidden cursor-pointer rounded-full flex items-center justify-center">
+          <button
+            className="bg-purple-500 p-4 overflow-hidden cursor-pointer rounded-full flex items-center justify-center"
+            onClick={calculateAge}
+          >
             <Image
               src={"/images/icon-arrow.svg"}
               width={50}
