@@ -21,6 +21,7 @@ export default function Home() {
             isErrorShow={false}
             label="DAY"
             maxValue={31}
+            value={yearValue}
             handleChange={() => {}}
           />
           <InputWrapper
@@ -28,6 +29,7 @@ export default function Home() {
             isErrorShow={false}
             label="MONTH"
             maxValue={12}
+            value={monthValue}
             handleChange={() => {}}
           />
           <InputWrapper
@@ -35,6 +37,7 @@ export default function Home() {
             isErrorShow={false}
             label="YEAR"
             maxValue={new Date().getFullYear()}
+            value={dayValue}
             handleChange={() => {}}
           />
         </header>

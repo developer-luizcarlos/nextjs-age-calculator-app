@@ -4,4 +4,5 @@ export interface InputWrapperBase {
   handleChange(): void;
   label: string;
   maxValue: number;
+  value: number;
 }
