@@ -6,7 +6,7 @@ export function InputWrapper({
   isErrorShow,
   handleChange,
   label,
-  maxValue,
+  maxLength,
   value,
 }: InputWrapperBase) {
   return (
@@ -18,8 +18,8 @@ export function InputWrapper({
       </label>
       <input
         type="text"
-        min={0}
-        max={maxValue}
+        minLength={1}
+        maxLength={maxLength}
         value={value}
         className={`${
           isErrorShow ? "border-red-500" : "border-gray-300"

@@ -1,7 +1,7 @@
 "use client";
+import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
-import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
 
 export default function Home() {
   const [totalYears, setTotalYears] = useState<number>(0);
@@ -34,7 +34,7 @@ export default function Home() {
             errorMessage="Must be a valid day"
             isErrorShow={dayError}
             label="DAY"
-            maxValue={31}
+            maxLength={2}
             value={dayValue}
             handleChange={(e: ChangeEvent<HTMLInputElement>) => {
               setDayValue(e.target.value);
@@ -45,7 +45,7 @@ export default function Home() {
             errorMessage="Must be a valid month"
             isErrorShow={monthError}
             label="MONTH"
-            maxValue={12}
+            maxLength={2}
             value={monthValue}
             handleChange={(e: ChangeEvent<HTMLInputElement>) => {
               setMonthValue(e.target.value);
@@ -56,7 +56,7 @@ export default function Home() {
             errorMessage="Must be a valid year"
             isErrorShow={yearError}
             label="YEAR"
-            maxValue={new Date().getFullYear()}
+            maxLength={4}
             value={yearValue}
             handleChange={(e: ChangeEvent<HTMLInputElement>) => {
               setYearValue(e.target.value);

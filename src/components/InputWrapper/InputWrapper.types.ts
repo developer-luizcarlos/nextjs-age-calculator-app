@@ -3,6 +3,6 @@ export interface InputWrapperBase {
   isErrorShow: boolean;
   handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
   label: string;
-  maxValue: number;
+  maxLength: number;
   value: string;
 }
