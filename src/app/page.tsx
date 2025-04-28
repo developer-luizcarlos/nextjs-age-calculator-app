@@ -132,7 +132,7 @@ export default function Home() {
             onClick={calculateAge}
           >
             <Image
-              src={"/images/icon-arrow.svg"}
+              src={"images/icon-arrow.svg"}
               width={50}
               height={50}
               alt="arrow icon"
