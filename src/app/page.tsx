@@ -12,13 +12,17 @@ export default function Home() {
   const [monthValue, setMonthValue] = useState<number>(0);
   const [dayValue, setDayValue] = useState<number>(0);
 
+  const [yearError, setYearError] = useState<boolean>(false);
+  const [monthError, setMonthError] = useState<boolean>(false);
+  const [dayError, setDayError] = useState<boolean>(false);
+
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
       <article className="bg-white w-3/5 p-8 round">
         <header className="flex items-center gap-3">
           <InputWrapper
             errorMessage="Must be a valid day"
-            isErrorShow={false}
+            isErrorShow={dayError}
             label="DAY"
             maxValue={31}
             value={yearValue}
@@ -26,7 +30,7 @@ export default function Home() {
           />
           <InputWrapper
             errorMessage="Must be a valid month"
-            isErrorShow={false}
+            isErrorShow={monthError}
             label="MONTH"
             maxValue={12}
             value={monthValue}
@@ -34,7 +38,7 @@ export default function Home() {
           />
           <InputWrapper
             errorMessage="Must be a valid year"
-            isErrorShow={false}
+            isErrorShow={yearError}
             label="YEAR"
             maxValue={new Date().getFullYear()}
             value={dayValue}
