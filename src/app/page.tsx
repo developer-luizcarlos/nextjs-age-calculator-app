@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="h-dvh flex items-center justify-center bg-gray-100">
-      <article className="bg-white w-3/5 p-8 round">
+      <article className="bg-white min-w-96 w-full max-w-3/5 p-8 round">
         <header className="flex items-center gap-3">
           <InputWrapper
             errorMessage="Must be a valid day"
