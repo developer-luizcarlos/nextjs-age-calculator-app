@@ -23,6 +23,7 @@ const Home: React.FC = () => {
 
   const calculateAge = () => {
     displayInvalidDateValueErrors();
+    if (isNegativeAge()) return;
     const isInvalidDateValues = dayError || monthError || yearError;
 
     if (isInvalidDateValues) return;
@@ -60,6 +61,21 @@ const Home: React.FC = () => {
     setDayError(invalidDay);
     setMonthError(invalidMonth);
     setYearError(invalidYear);
+  };
+
+  const isNegativeAge = () => {
+    const date = new Date();
+    const [month, year] = [parseFloat(monthValue), parseFloat(yearValue)];
+    const [currentMonth, currentYear] = [
+      date.getMonth() + 1,
+      date.getFullYear(),
+    ];
+
+    const isAnyDateValueNaN = isNaN(month) || isNaN(year);
+    if (isAnyDateValueNaN) return true;
+
+    if (month > currentMonth && year === currentYear) return true;
+    else return false;
   };
 
   const validateInputValue = (
