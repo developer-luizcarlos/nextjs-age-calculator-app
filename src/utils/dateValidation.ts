@@ -1,10 +1,10 @@
 import { DateTime } from "luxon";
 
-export function calculateYearsMonthsAndDaysAlive(
+export const calculateYearsMonthsAndDaysAlive = (
   year: number,
   month: number,
   day: number
-) {
+) => {
   const timePassed = DateTime.now().diff(DateTime.local(year, month, day), [
     "years",
     "months",
@@ -14,13 +14,13 @@ export function calculateYearsMonthsAndDaysAlive(
   const monthsPassed = timePassed.months;
   const daysPassed = Math.round(timePassed.days);
   return { yearsPassed, monthsPassed, daysPassed };
-}
+};
 
-export function isDayAccordingToMonthAndYear(
+export const isDayAccordingToMonthAndYear = (
   day: number,
   month: number,
   year: number
-): boolean {
+): boolean => {
   const isAThirdOneDaysMonth =
     (day <= 31 && month === 1) ||
     (day <= 31 && month === 3) ||
@@ -48,8 +48,8 @@ export function isDayAccordingToMonthAndYear(
   )
     return false;
   else return true;
-}
+};
 
-export function isLeapYear(year: number): boolean {
+export const isLeapYear = (year: number): boolean => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
+};

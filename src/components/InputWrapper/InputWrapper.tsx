@@ -1,14 +1,14 @@
 "use client";
 import { type InputWrapperBase } from "./InputWrapper.types";
 
-export function InputWrapper({
+const InputWrapper: React.FC<InputWrapperBase> = ({
   errorMessage,
   isErrorShow,
   handleChange,
   label,
   maxLength,
   value,
-}: InputWrapperBase) {
+}) => {
   return (
     <div className="flex flex-col">
       <label
@@ -33,4 +33,6 @@ export function InputWrapper({
       </small>
     </div>
   );
-}
+};
+
+export default InputWrapper;

@@ -1,14 +1,14 @@
 "use client";
-import { InputWrapper } from "@/components/InputWrapper/InputWrapper";
-import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import InputWrapper from "@/components/InputWrapper/InputWrapper";
+import { monthFormat } from "@/utils/dateFormat";
 import {
   calculateYearsMonthsAndDaysAlive,
   isDayAccordingToMonthAndYear,
 } from "@/utils/dateValidation";
-import { monthFormat } from "@/utils/dateFormat";
+import Image from "next/image";
+import { ChangeEvent, useState } from "react";
 
-export default function Home() {
+const Home = () => {
   const [totalYears, setTotalYears] = useState<number>(0);
   const [totalMonths, setTotalMonths] = useState<number>(0);
   const [totalDays, setTotalDays] = useState<number>(0);
@@ -21,7 +21,7 @@ export default function Home() {
   const [monthError, setMonthError] = useState<boolean>(false);
   const [dayError, setDayError] = useState<boolean>(false);
 
-  function calculateAge() {
+  const calculateAge = () => {
     verifyExistentErrors();
     if (
       dayError ||
@@ -49,9 +49,9 @@ export default function Home() {
     setTotalDays(totalAge.daysPassed);
     setTotalMonths(totalAge.monthsPassed);
     setTotalYears(totalAge.yearsPassed);
-  }
+  };
 
-  function verifyExistentErrors() {
+  const verifyExistentErrors = () => {
     if (dayValue === "") {
       setDayError(true);
     } else {
@@ -69,17 +69,17 @@ export default function Home() {
     } else {
       setYearError(false);
     }
-  }
+  };
 
-  function validateInputValue(
+  const validateInputValue = (
     min: number,
     max: number,
     value: string
-  ): boolean {
+  ): boolean => {
     const val = parseFloat(value);
     if (!val || val < min || val > max) return true;
     else return false;
-  }
+  };
 
   return (
     <div className="h-dvh flex items-center justify-center bg-green-100">
@@ -156,4 +156,6 @@ export default function Home() {
       </article>
     </div>
   );
-}
+};
+
+export default Home;
