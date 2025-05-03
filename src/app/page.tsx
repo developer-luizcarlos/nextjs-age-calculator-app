@@ -22,20 +22,16 @@ const Home = () => {
   const [dayError, setDayError] = useState<boolean>(false);
 
   const calculateAge = () => {
-    verifyExistentErrors();
-    if (
-      dayError ||
-      monthError ||
-      yearError ||
-      dayValue === "" ||
-      monthValue === "" ||
-      yearValue === ""
-    )
-      return;
+    displayInvalidDateValueErrors();
+    const isInvalidDateValues = dayError || monthError || yearError;
+
+    if (isInvalidDateValues) return;
 
     const day = parseFloat(dayValue);
     const month = parseFloat(monthFormat(monthValue));
     const year = parseFloat(yearValue);
+
+    console.log(month);
 
     const isValidDate = isDayAccordingToMonthAndYear(day, month, year);
     if (!isValidDate) {
@@ -51,24 +47,21 @@ const Home = () => {
     setTotalYears(totalAge.yearsPassed);
   };
 
-  const verifyExistentErrors = () => {
-    if (dayValue === "") {
-      setDayError(true);
-    } else {
-      setDayError(false);
-    }
+  const displayInvalidDateValueErrors = () => {
+    const [day, month, year] = [
+      parseFloat(dayValue),
+      parseFloat(monthValue),
+      parseFloat(yearValue),
+    ];
 
-    if (monthValue === "") {
-      setMonthError(true);
-    } else {
-      setMonthError(false);
-    }
+    const invalidDay = day.toString() === "" || day < 1 || day > 31;
+    const invalidMonth = month.toString() === "" || month < 1 || month > 12;
+    const invalidYear =
+      year.toString() === "" || year < 1950 || year > new Date().getFullYear();
 
-    if (yearValue === "") {
-      setYearError(true);
-    } else {
-      setYearError(false);
-    }
+    setDayError(invalidDay);
+    setMonthError(invalidMonth);
+    setYearError(invalidYear);
   };
 
   const validateInputValue = (
@@ -141,15 +134,15 @@ const Home = () => {
         </div>
         <ul>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">{totalYears || "--"}</span>
+            <span className="text-purple-500">{totalYears ?? "--"}</span>
             <span className="text-black ml-3">years</span>
           </li>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">{totalMonths || "--"}</span>
+            <span className="text-purple-500">{totalMonths ?? "--"}</span>
             <span className="text-black ml-3">months</span>
           </li>
           <li className="text-6xl italic font-bold">
-            <span className="text-purple-500">{totalDays || "--"}</span>
+            <span className="text-purple-500">{totalDays ?? "--"}</span>
             <span className="text-black ml-3">days</span>
           </li>
         </ul>
