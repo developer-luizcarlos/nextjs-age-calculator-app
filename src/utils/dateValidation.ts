@@ -12,7 +12,7 @@ export const calculateYearsMonthsAndDaysAlive = (
   ]);
   const yearsPassed = timePassed.years;
   const monthsPassed = timePassed.months;
-  const daysPassed = Math.round(timePassed.days);
+  const daysPassed = Math.floor(timePassed.days);
   return { yearsPassed, monthsPassed, daysPassed };
 };
 
