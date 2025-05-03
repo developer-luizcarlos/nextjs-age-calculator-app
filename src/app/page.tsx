@@ -1,11 +1,11 @@
 "use client";
 import InputWrapper from "@/components/InputWrapper/InputWrapper";
+import Button from "@/components/Button/Button";
 import { monthFormat } from "@/utils/dateFormat";
 import {
   calculateYearsMonthsAndDaysAlive,
   isDayAccordingToMonthAndYear,
 } from "@/utils/dateValidation";
-import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 
 const Home: React.FC = () => {
@@ -118,17 +118,7 @@ const Home: React.FC = () => {
         </header>
         <div className="flex items-center gap-3">
           <hr className="w-full text-gray-200" />
-          <button
-            className="bg-purple-500 p-6 overflow-hidden cursor-pointer rounded-full flex items-center justify-center duration-150 hover:bg-black focus:bg-black"
-            onClick={calculateAge}
-          >
-            <Image
-              src={"images/icon-arrow.svg"}
-              width={50}
-              height={50}
-              alt="arrow icon"
-            />
-          </button>
+          <Button handleClick={calculateAge} />
           <hr className="w-full block text-gray-200 md:hidden" />
         </div>
         <ul>
