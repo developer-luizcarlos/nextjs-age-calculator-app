@@ -12,7 +12,7 @@ const InputWrapper: React.FC<InputWrapperBase> = ({
   return (
     <div className="flex flex-col">
       <label
-        className={`uppercase ${isErrorShow ? "text-red-500" : "text-black"}`}
+        className={`uppercase ${isErrorShow ? "text-red-400" : "text-black"}`}
       >
         {label}
       </label>
@@ -22,12 +22,12 @@ const InputWrapper: React.FC<InputWrapperBase> = ({
         maxLength={maxLength}
         value={value}
         className={`${
-          isErrorShow ? "border-red-500" : "border-gray-300"
-        } border rounded p-4 max-w-40 my-2 focus:outline-purple-500 text-2xl`}
+          isErrorShow ? "border-red-400" : "border-gray-300"
+        } border rounded p-4 max-w-40 my-2 focus:outline-purple-500 text-2xl sm:w-[100%]`}
         onChange={handleChange}
       />
       <small
-        className={`text-red-500 ${isErrorShow ? "opacity-100" : "opacity-0"}`}
+        className={`text-red-400 ${isErrorShow ? "opacity-100" : "opacity-0"}`}
       >
         {errorMessage}
       </small>

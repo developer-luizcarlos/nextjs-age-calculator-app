@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 
-const Home = () => {
+const Home: React.FC = () => {
   const [totalYears, setTotalYears] = useState<number>(0);
   const [totalMonths, setTotalMonths] = useState<number>(0);
   const [totalDays, setTotalDays] = useState<number>(0);
@@ -30,8 +30,6 @@ const Home = () => {
     const day = parseFloat(dayValue);
     const month = parseFloat(monthFormat(monthValue));
     const year = parseFloat(yearValue);
-
-    console.log(month);
 
     const isValidDate = isDayAccordingToMonthAndYear(day, month, year);
     if (!isValidDate) {
@@ -75,7 +73,7 @@ const Home = () => {
   };
 
   return (
-    <div className="h-dvh flex items-center justify-center bg-green-100">
+    <div className="h-dvh flex items-center justify-center bg-gray-100">
       <article className="bg-white w-3/5 p-8 round">
         <header className="flex items-center gap-3">
           <InputWrapper
@@ -121,7 +119,7 @@ const Home = () => {
         <div className="flex items-center gap-3">
           <hr className="w-full text-gray-200" />
           <button
-            className="bg-purple-500 p-4 overflow-hidden cursor-pointer rounded-full flex items-center justify-center"
+            className="bg-purple-500 p-6 overflow-hidden cursor-pointer rounded-full flex items-center justify-center duration-150 hover:bg-black focus:bg-black"
             onClick={calculateAge}
           >
             <Image
@@ -131,6 +129,7 @@ const Home = () => {
               alt="arrow icon"
             />
           </button>
+          <hr className="w-full block text-gray-200 md:hidden" />
         </div>
         <ul>
           <li className="text-6xl italic font-bold">
