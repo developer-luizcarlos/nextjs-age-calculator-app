@@ -63,6 +63,27 @@ const Home: React.FC = () => {
     setYearError(invalidYear);
   };
 
+  const anniversaryMessage = () => {
+    const [day, month, year] = [
+      parseFloat(dayValue),
+      parseFloat(monthValue),
+      parseFloat(yearValue),
+    ];
+
+    const isAnyDateValueNaN = isNaN(day) || isNaN(month) || isNaN(year);
+    if (isAnyDateValueNaN) return;
+
+    const age = calculateYearsMonthsAndDaysAlive(year, month, day);
+    const monthsPassed = age.monthsPassed;
+    const yearsPassed = age.yearsPassed;
+    const isAnniversary =
+      yearsPassed >= 1 && monthsPassed === 0 && day == new Date().getDate();
+
+    if (isAnniversary) {
+      window.alert("Happy Birthday!!!");
+    }
+  };
+
   const isNegativeAge = () => {
     const date = new Date();
     const [month, year] = [parseFloat(monthValue), parseFloat(yearValue)];
@@ -134,7 +155,12 @@ const Home: React.FC = () => {
         </header>
         <div className="flex items-center gap-3">
           <hr className="w-full text-gray-200" />
-          <Button handleClick={calculateAge} />
+          <Button
+            handleClick={() => {
+              calculateAge();
+              anniversaryMessage();
+            }}
+          />
           <hr className="w-full block text-gray-200 md:hidden" />
         </div>
         <ul>
